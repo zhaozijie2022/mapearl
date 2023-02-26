@@ -1,7 +1,7 @@
 import numpy as np
 
 # defines scenario upon which the world is built
-class BaseScenario(object):
+class BaseScenario:
     # create elements of the world
     def make_world(self):
         raise NotImplementedError()
