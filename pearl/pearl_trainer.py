@@ -9,7 +9,7 @@ from mpe.lib4occupy import *
 
 from meta_rl.envs import ENVS
 from pearl.meta_learner import MetaLearner
-from pearl.sac import SAC
+from pearl.SacAgent import SacAgent
 
 
 num_tasks = 100
@@ -55,7 +55,7 @@ if __name__ == "__main__":
                           if torch.cuda.is_available()
                           else torch.device("cpu"))
 
-    agent = SAC(
+    agent = SacAgent(
         observ_dim=obs_dim,
         action_dim=act_dim,
         latent_dim=5,  # 上下文变量的维度
@@ -63,6 +63,7 @@ if __name__ == "__main__":
         encoder_input_dim=obs_dim + act_dim + 1,
         encoder_output_dim=5 * 2,
         device=device,
+        args_sac=args_sac,
     )
 
     meta_learner = MetaLearner(

@@ -14,8 +14,10 @@ from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
 from pearl.buffers import MultiTaskReplayBuffer
-from pearl.sac import SAC
+from pearl.SacAgent import SAC
 from pearl.sampler import Sampler
+
+from mpe.lib4occupy import *
 
 
 class MetaLearner:

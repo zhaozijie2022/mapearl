@@ -8,7 +8,7 @@ import torch.optim as optim
 from meta_rl.pearl.algorithm.networks import FlattenMLP, MLPEncoder, TanhGaussianPolicy
 
 
-class SAC:
+class SacAgent:
     def __init__(
         self,
         observ_dim: int,
@@ -24,11 +24,15 @@ class SAC:
         policy_lr: float = 3e-4,
         qf_lr: float = 3e-4,
         encoder_lr: float = 3e-4,
+        args_sac=None,
     ) -> None:
         self.device = device
-        self.gamma: float = gamma
-        self.kl_lambda: float = kl_lambda
-        self.batch_size: int = batch_size
+        self.gamma: float = args_sac.gamma
+        self.kl_lambda: float = args_sac.kl_lambda
+        self.batch_size: int = args_sac.batch_size
+        self.policy_lr = args_sac.policy_lr
+        self.qf_lr = args_sac.qf_lr
+        self.encoder_lr = args_sac.encoder_lr
 
         # Instantiate networks
         self.policy = TanhGaussianPolicy(
